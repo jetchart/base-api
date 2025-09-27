@@ -3,6 +3,8 @@ import { OAuth2Client } from 'google-auth-library';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from './user.service';
 import { ConfigService } from '@nestjs/config';
+import { UserDto } from './user.dto';
+import { UserCredentialDto } from './user-credential.dto';
 
 @Injectable()
 export class AuthService {
@@ -17,23 +19,23 @@ export class AuthService {
     this.client = new OAuth2Client(googleClientId);
   }
 
-  async login(id_token: string) {
+  async login(token: string): Promise<UserCredentialDto> {
     const ticket = await this.client.verifyIdToken({
-      idToken: id_token,
+      idToken: token,
     });
 
     const payload = ticket.getPayload();
     if (!payload) throw new UnauthorizedException('Invalid Google token');
 
     const existingUser = await this.userService.findByEmail(payload.email!);
+
+    const userDto = new UserDto(payload.email!, payload.name!, payload.given_name!, payload.family_name!, payload.picture!);
+
     const persistedUser = existingUser
       ? existingUser
-      : await this.userService.create({
-          email: payload.email,
-          name: payload.name,
-        });
+      : await this.userService.create(userDto);
 
     const access_token = this.jwtService.sign({ sub: persistedUser.email });
-    return { access_token, user: { email: persistedUser.email, name: persistedUser.name } };
+    return new UserCredentialDto(userDto, access_token);
   }
 }

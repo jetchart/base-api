@@ -18,5 +18,8 @@ export const configuration = () => ({
   google: {
     clientId: "65738319816-84n4osqr38kdjhqdrr7q0a0id2d56gre.apps.googleusercontent.com"
   },
-  nestport: parseInt(process.env.PORT || '3000'),
+  web: {
+    host: 'http://localhost:5173',
+  },
+  nestport: 3000,
 });

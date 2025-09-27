@@ -4,6 +4,8 @@ import { configuration as devConfiguration } from './config/config.development';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserEntity } from './modules/user.entity';
 import { AuthModule } from './modules/auth.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -26,5 +28,7 @@ import { AuthModule } from './modules/auth.module';
     TypeOrmModule.forFeature([UserEntity]),
     AuthModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
