@@ -15,5 +15,8 @@ export const configuration = () => ({
   jwt: {
     secret: process.env.JWT_SECRET || 'THE_SECRET',
   },
+  google: {
+    clientId: "65738319816-84n4osqr38kdjhqdrr7q0a0id2d56gre.apps.googleusercontent.com"
+  },
   nestport: parseInt(process.env.PORT || '3000'),
 });

@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configuration as devConfiguration } from './config/config.development';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { UserEntity } from './modules/user.entity';
+import { AuthModule } from './modules/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
       useFactory: (config: ConfigService): TypeOrmModuleOptions =>
         config.get<TypeOrmModuleOptions>('database')!,
     }),
+    TypeOrmModule.forFeature([UserEntity]),
+    AuthModule,
   ],
 })
 export class AppModule {}
