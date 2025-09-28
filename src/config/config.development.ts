@@ -10,7 +10,7 @@ export const configuration = () => ({
     database: process.env.DB_DATABASE || 'nest_db',
     synchronize: true,
     autoLoadEntities: true,
-    logging: true,
+    logging: false,
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'THE_SECRET',
