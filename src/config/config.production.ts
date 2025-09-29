@@ -3,7 +3,7 @@ import { DEFAULT_DATA_SOURCE_OPTIONS } from './config.common';
 export const configuration = () => ({
   database: {
     ...DEFAULT_DATA_SOURCE_OPTIONS,
-    url: process.env.DB_URL,
+    url: process.env.DATABASE_URL,
     synchronize: false,
     autoLoadEntities: true,
     logging: false,
