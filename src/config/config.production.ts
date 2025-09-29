@@ -4,7 +4,6 @@ export const configuration = () => ({
   database: {
     ...DEFAULT_DATA_SOURCE_OPTIONS,
     url: process.env.DATABASE_URL,
-    synchronize: false,
     autoLoadEntities: true,
     logging: false,
   },

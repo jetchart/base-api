@@ -3,11 +3,7 @@ import { DEFAULT_DATA_SOURCE_OPTIONS } from './config.common';
 export const configuration = () => ({
   database: {
     ...DEFAULT_DATA_SOURCE_OPTIONS,
-    host: 'localhost',
-    port: 5432,
-    username: 'nest_user',
-    password: 'nest_pass',
-    database: 'nest_db',
+    url: 'postgresql://nest_user:nest_pass@localhost:5432/nest_db',
     synchronize: true,
     autoLoadEntities: true,
     logging: false,

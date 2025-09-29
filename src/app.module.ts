@@ -14,8 +14,6 @@ import { AppService } from './modules/app.service';
       isGlobal: true,
       load: (() => {
         const env = process.env.NODE_ENV;
-        console.log('Environment', env);
-        console.log(productionConfiguration);
         if (env === 'production') return [productionConfiguration];
         if (env === 'staging') return [devConfiguration];
         if (env === 'testing' || env === 'test') return [devConfiguration];
