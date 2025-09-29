@@ -3,7 +3,7 @@ import { DEFAULT_DATA_SOURCE_OPTIONS } from './config.common';
 export const configuration = () => ({
   database: {
     ...DEFAULT_DATA_SOURCE_OPTIONS,
-    host: process.env.DB_HOST || 'postgresql://postgres:bmxUtMuOvMdPDmQCrJkvlmWoSrbgLkVf@postgres.railway.internal:5432/railway',
+    url: process.env.DB_URL || 'postgresql://postgres:bmxUtMuOvMdPDmQCrJkvlmWoSrbgLkVf@postgres.railway.internal:5432/railway',
     synchronize: true,
     autoLoadEntities: true,
     logging: false,
