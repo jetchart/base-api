@@ -10,4 +10,9 @@ export class AuthController {
   async login(@Body('token') token: string): Promise<UserCredentialDto> {
     return await this.authService.login(token);
   }
+
+    @Get('/google/login')
+  async test(): Promise<string> {
+    return 'Ok!';
+  }
 }
