@@ -3,7 +3,7 @@ import { DEFAULT_DATA_SOURCE_OPTIONS } from './config.common';
 export const configuration = () => ({
   database: {
     ...DEFAULT_DATA_SOURCE_OPTIONS,
-    url: process.env.DATABASE_URL,
+    url: 'postgresql://postgres:KGqdLPQSZurDRDDtFppLCtVfwViWLOaA@switchback.proxy.rlwy.net:44103/railway',
     autoLoadEntities: true,
     logging: false,
   },
