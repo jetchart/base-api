@@ -15,9 +15,9 @@ import { AppService } from './modules/app.service';
       load: (() => {
         const env = process.env.NODE_ENV;
         if (env === 'production') return [productionConfiguration];
-        if (env === 'staging') return [devConfiguration];
-        if (env === 'testing' || env === 'test') return [devConfiguration];
-        return [devConfiguration];
+        if (env === 'staging') return [productionConfiguration];
+        if (env === 'testing' || env === 'test') return [productionConfiguration];
+        return [productionConfiguration];
       })(),
       expandVariables: true,
     }),
