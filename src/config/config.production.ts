@@ -6,7 +6,7 @@ export const configuration = () => ({
     url: process.env.DB_URL,
     autoLoadEntities: true,
     logging: false,
-    synchronize: false,
+    synchronize: true,
   },
   jwt: {
     secret: process.env.JWT_SECRET,
