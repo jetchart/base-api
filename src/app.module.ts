@@ -21,12 +21,10 @@ import { AppService } from './modules/app.service';
       })(),
       expandVariables: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: 'postgresql://postgres:KGqdLPQSZurDRDDtFppLCtVfwViWLOaA@switchback.proxy.rlwy.net:44103/railway',
-      autoLoadEntities: true,
-      logging: false,
-      synchronize: false,
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService): TypeOrmModuleOptions =>
+        config.get<TypeOrmModuleOptions>('database')!,
     }),
     TypeOrmModule.forFeature([UserEntity]),
     AuthModule,

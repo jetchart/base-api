@@ -2,10 +2,11 @@ import { DEFAULT_DATA_SOURCE_OPTIONS } from './config.common';
 
 export const configuration = () => ({
   database: {
-    ...DEFAULT_DATA_SOURCE_OPTIONS,
+    type: 'postgres',
     url: 'postgresql://postgres:KGqdLPQSZurDRDDtFppLCtVfwViWLOaA@switchback.proxy.rlwy.net:44103/railway',
     autoLoadEntities: true,
     logging: false,
+    synchronize: false,
   },
   jwt: {
     secret: process.env.JWT_SECRET,
