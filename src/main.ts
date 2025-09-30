@@ -9,7 +9,7 @@ async function bootstrap() {
   const port = configService.get('nestport');
   
   app.enableCors({
-    origin: webHost,
+    origin: true,
     credentials: true,
   });
   await app.listen(port ?? 3000);
