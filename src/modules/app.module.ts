@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configuration as devConfiguration } from '../config/config.development';
 import { configuration as productionConfiguration } from '../config/config.production';
@@ -11,6 +11,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerModule } from 'nestjs-pino';
 import { AppLoggerModule } from './app-logger/app-logger.module';
+import { ErrorMiddleware } from 'src/middlewares/error.middleware';
 
 @Module({
   imports: [
@@ -49,4 +50,8 @@ import { AppLoggerModule } from './app-logger/app-logger.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ErrorMiddleware).forRoutes('*');
+  }
+}

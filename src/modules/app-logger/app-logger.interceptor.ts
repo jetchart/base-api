@@ -11,9 +11,7 @@ import { AppLogger } from './app-logger';
 
 @Injectable()
 export class AppLoggingInterceptor implements NestInterceptor {
-  constructor(private readonly logger: AppLogger) {
-    this.logger.setContext(AppLoggingInterceptor.name);
-  }
+  constructor(private readonly logger: AppLogger) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const now = Date.now();

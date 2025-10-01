@@ -1,9 +1,8 @@
-import { Injectable, Scope, LoggerService } from '@nestjs/common';
-import { PinoLogger, Params } from 'nestjs-pino';
+import { Injectable, LoggerService } from '@nestjs/common';
+import { PinoLogger } from 'nestjs-pino';
 
 @Injectable()
 export class AppLogger extends PinoLogger implements LoggerService {
-
   private format(context: string, message: any) {
     const prefix = context ? `[${context}] ` : '';
     if (typeof message === 'string') return `${prefix}${message}`;
