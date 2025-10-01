@@ -1,17 +1,12 @@
 import { Injectable, Scope, LoggerService } from '@nestjs/common';
-import * as nestjsPino from 'nestjs-pino';
+import { PinoLogger } from 'nestjs-pino';
 
 @Injectable({ scope: Scope.TRANSIENT })
-export class AppLogger extends nestjsPino.PinoLogger implements LoggerService {
+export class AppLogger extends PinoLogger implements LoggerService {
   private customContext = '';
-
-  constructor(params: nestjsPino.Params) {
-    super(params);
-  }
 
   setContext(context: string) {
     this.customContext = context;
-    super.setContext(context);
   }
 
   private formatMessage(message: string) {
