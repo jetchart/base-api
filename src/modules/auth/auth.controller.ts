@@ -12,7 +12,7 @@ export class AuthController {
   @Post('/google/login')
   async login(@Body('token') token: string): Promise<UserCredentialDto> {
     const logLocation = `${this.constructor.name}::login`;
-    this.logger.info(logLocation, 'Trying to log in with Google token', {token});
+    this.logger.info({logLocation, ...{token}}, 'Trying to log in with Google token');
     return await this.authService.login(token);
   }
 }
