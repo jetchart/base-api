@@ -1,39 +1,37 @@
 import { Injectable, Scope, LoggerService } from '@nestjs/common';
-import { PinoLogger } from 'nestjs-pino';
+import { PinoLogger, Params } from 'nestjs-pino';
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class AppLogger extends PinoLogger implements LoggerService {
-  private customContext = '';
 
-  setContext(context: string) {
-    this.customContext = context;
+  private format(context: string, message: any) {
+    const prefix = context ? `[${context}] ` : '';
+    if (typeof message === 'string') return `${prefix}${message}`;
+    if (message instanceof Error) return `${prefix}${message.message}`;
+    return `${prefix}${JSON.stringify(message)}`;
   }
 
-  private formatMessage(message: string) {
-    return this.customContext ? `[${this.customContext}] ${message}` : message;
+  log(context: string, message: any, ...optionalParams: any[]) {
+    super.info(this.format(context, message), ...optionalParams);
   }
 
-  log(message: any, ...optionalParams: any[]) {
-    super.info(this.formatMessage(message), ...optionalParams);
+  error(context: string, message: any, ...optionalParams: any[]) {
+    super.error(this.format(context, message), ...optionalParams);
   }
 
-  error(message: any, ...optionalParams: any[]) {
-    super.error(this.formatMessage(message), ...optionalParams);
+  warn(context: string, message: any, ...optionalParams: any[]) {
+    super.warn(this.format(context, message), ...optionalParams);
   }
 
-  warn(message: any, ...optionalParams: any[]) {
-    super.warn(this.formatMessage(message), ...optionalParams);
+  debug(context: string, message: any, ...optionalParams: any[]) {
+    super.debug(this.format(context, message), ...optionalParams);
   }
 
-  debug(message: any, ...optionalParams: any[]) {
-    super.debug(this.formatMessage(message), ...optionalParams);
+  verbose(context: string, message: any, ...optionalParams: any[]) {
+    super.info(this.format(context, message), ...optionalParams);
   }
 
-  verbose(message: any, ...optionalParams: any[]) {
-    super.info(this.formatMessage(message), ...optionalParams);
-  }
-
-  success(message: string, ...optionalParams: any[]) {
-    super.info(this.formatMessage(`✅ ${message}`), ...optionalParams);
+  success(context: string, message: any, ...optionalParams: any[]) {
+    super.info(this.format(context, `✅ ${message}`), ...optionalParams);
   }
 }

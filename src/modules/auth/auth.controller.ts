@@ -9,14 +9,14 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly logger: AppLogger,
   ) {
-    this.logger.setContext(this.constructor.name);
   }
 
   @Post('/google/login')
   async login(@Body('token') token: string): Promise<UserCredentialDto> {
-    this.logger.info('Trying to log in with Google token');
+    const logContext = `${this.constructor.name}::login`;
+    this.logger.info(logContext, 'Trying to log in with Google token');
     const response = await this.authService.login(token);
-    this.logger.success('Login successful', { email: response.email });
+    this.logger.success(logContext, 'Login successful', { email: response.email });
     return response;
   }
 }

@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
-  const logger = await app.resolve(AppLogger);
+  const logger = app.get(AppLogger);
 
   app.useLogger(logger);
   app.useGlobalInterceptors(new AppLoggingInterceptor(logger));
