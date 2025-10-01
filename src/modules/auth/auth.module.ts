@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UserEntity } from './user.entity';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
+import { AppLoggerModule } from '../app-logger/app-logger.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { UserService } from './user.service';
       secret: process.env.JWT_SECRET || 'THE_SECRET',
       signOptions: { expiresIn: '7d' },
     }),
-    TypeOrmModule.forFeature([UserEntity])],
+    TypeOrmModule.forFeature([UserEntity]),
+  AppLoggerModule],
   controllers: [AuthController],
   providers: [UserService, AuthService],
   exports: [UserService, AuthService],

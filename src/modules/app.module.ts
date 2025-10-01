@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LoggerModule } from 'nestjs-pino';
+import { AppLoggerModule } from './app-logger/app-logger.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { LoggerModule } from 'nestjs-pino';
     }),
     TypeOrmModule.forFeature([UserEntity]),
     AuthModule,
+    AppLoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
