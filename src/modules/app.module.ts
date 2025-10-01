@@ -9,9 +9,21 @@ import { UserEntity } from './auth/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
   imports: [
+     LoggerModule.forRoot({
+      pinoHttp: {
+        level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+        transport: process.env.NODE_ENV !== 'production'
+          ? {
+              target: 'pino-pretty',
+              options: { colorize: true },
+            }
+          : undefined,
+      },
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: (() => {
