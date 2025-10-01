@@ -14,15 +14,16 @@ import { AppLoggerModule } from './app-logger/app-logger.module';
 
 @Module({
   imports: [
-     LoggerModule.forRoot({
+    LoggerModule.forRoot({
       pinoHttp: {
         level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-        transport: process.env.NODE_ENV !== 'production'
-          ? {
-              target: 'pino-pretty',
-              options: { colorize: true },
-            }
-          : undefined,
+        transport:
+          process.env.NODE_ENV !== 'production'
+            ? {
+                target: 'pino-pretty',
+                options: { colorize: true },
+              }
+            : undefined,
       },
     }),
     ConfigModule.forRoot({

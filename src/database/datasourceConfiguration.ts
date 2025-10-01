@@ -8,7 +8,8 @@ import type { PostgresConnectionOptions } from 'typeorm/driver/postgres/Postgres
 export const getDataSourceOptions =
   async (): Promise<PostgresConnectionOptions> => {
     let conf: any = devConfiguration();
-    if (process.env.NODE_ENV == 'testing' || process.env.NODE_ENV == 'test') conf = testingConfiguration();
+    if (process.env.NODE_ENV == 'testing' || process.env.NODE_ENV == 'test')
+      conf = testingConfiguration();
     if (process.env.NODE_ENV == 'staging') conf = stagingConfiguration();
     if (process.env.NODE_ENV == 'production') conf = productionConfiguration();
     const database = async () => {

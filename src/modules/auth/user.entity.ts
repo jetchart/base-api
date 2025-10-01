@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 
 @Entity('user')
 export class UserEntity {
@@ -8,13 +15,13 @@ export class UserEntity {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ name: "given_name", type: 'varchar', length: 255 })
+  @Column({ name: 'given_name', type: 'varchar', length: 255 })
   givenName: string;
 
-  @Column({ name: "family_name", type: 'varchar', length: 255 })
+  @Column({ name: 'family_name', type: 'varchar', length: 255 })
   familyName: string;
 
-  @Column({ name: "picture_url", type: 'varchar', length: 255 })
+  @Column({ name: 'picture_url', type: 'varchar', length: 255 })
   pictureUrl: string;
 
   @Column({ type: 'varchar', length: 255, unique: true })

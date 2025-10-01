@@ -29,7 +29,13 @@ export class AuthService {
 
     const existingUser = await this.userService.findByEmail(payload.email!);
 
-    const userDto = new UserDto(payload.email!, payload.name!, payload.given_name!, payload.family_name!, payload.picture!);
+    const userDto = new UserDto(
+      payload.email!,
+      payload.name!,
+      payload.given_name!,
+      payload.family_name!,
+      payload.picture!,
+    );
 
     const persistedUser = existingUser
       ? existingUser

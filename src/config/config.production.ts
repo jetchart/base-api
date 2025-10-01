@@ -12,7 +12,7 @@ export const configuration = () => ({
     secret: process.env.JWT_SECRET,
   },
   google: {
-    clientId: process.env.GOOGLE_CLIENT_ID
+    clientId: process.env.GOOGLE_CLIENT_ID,
   },
   web: {
     host: process.env.WEB_HOST,

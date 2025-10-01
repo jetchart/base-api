@@ -15,7 +15,8 @@ export const configuration = () => ({
     secret: 'THE_SECRET',
   },
   google: {
-    clientId: "65738319816-84n4osqr38kdjhqdrr7q0a0id2d56gre.apps.googleusercontent.com"
+    clientId:
+      '65738319816-84n4osqr38kdjhqdrr7q0a0id2d56gre.apps.googleusercontent.com',
   },
   web: {
     host: 'http://localhost:5173',
