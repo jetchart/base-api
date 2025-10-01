@@ -17,12 +17,14 @@ async function bootstrap() {
 
   const configService = app.get<ConfigService>(ConfigService);
   const webHost = configService.get('web.host');
-  const port = configService.get('nestport');
+  const port = configService.get('nestport') || 3000;
 
   app.enableCors({
     origin: true,
     credentials: true,
   });
-  await app.listen(port ?? 3000);
+
+  logger.log('bootstrap', `Application running on port ${port}`);
+  await app.listen(port);
 }
 bootstrap();

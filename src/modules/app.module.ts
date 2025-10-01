@@ -9,6 +9,7 @@ import { UserEntity } from './auth/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
 import { LoggerModule } from 'nestjs-pino';
 import { AppLoggerModule } from './app-logger/app-logger.module';
 import { ErrorMiddleware } from 'src/middlewares/error.middleware';
@@ -44,7 +45,8 @@ import { ErrorMiddleware } from 'src/middlewares/error.middleware';
         config.get<TypeOrmModuleOptions>('database')!,
     }),
     TypeOrmModule.forFeature([UserEntity]),
-    AuthModule,
+  AuthModule,
+  UserModule,
     AppLoggerModule,
   ],
   controllers: [AppController],
