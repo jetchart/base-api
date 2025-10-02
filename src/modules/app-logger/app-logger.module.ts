@@ -4,7 +4,7 @@ import { getPinoParams } from './utils/pino-params';
 import { LoggerModule } from 'nestjs-pino';
 
 @Module({
-  imports: [LoggerModule.forRoot(getPinoParams()),],
+  imports: [LoggerModule.forRoot(getPinoParams())],
   providers: [AppLogger],
   exports: [AppLogger],
 })

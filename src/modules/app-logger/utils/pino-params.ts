@@ -7,16 +7,19 @@ const DEVELOPMENT_ENV_TRANSPORT = {
       colorize: true,
       ignore: 'pid,hostname,context,req,location',
       levelFirst: true,
-      translateTime: true
-    }
-  }
+      translateTime: true,
+    },
+  },
 };
 
 export const getPinoParams = (): Params => {
   return {
     pinoHttp: {
       autoLogging: false,
-      ...((!process.env.NODE_ENV || process.env.NODE_ENV == 'dev' || process.env.NODE_ENV == 'development') && DEVELOPMENT_ENV_TRANSPORT)
-    }
+      ...((!process.env.NODE_ENV ||
+        process.env.NODE_ENV == 'dev' ||
+        process.env.NODE_ENV == 'development') &&
+        DEVELOPMENT_ENV_TRANSPORT),
+    },
   };
 };

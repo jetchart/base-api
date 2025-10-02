@@ -19,7 +19,6 @@ export class AppLoggingInterceptor implements NestInterceptor {
     const httpCtx = context.switchToHttp();
     const request = httpCtx.getRequest<Request>();
     const { method, url } = request;
-    
 
     this.logger.log(`➡️  ${method} ${url} - Incoming request`);
 
@@ -34,7 +33,7 @@ export class AppLoggingInterceptor implements NestInterceptor {
         const ms = Date.now() - now;
         this.logger.error(`❌ ${method} ${url} - Error after ${ms}ms`, err);
         return throwError(() => err);
-      })
+      }),
     );
   }
 }

@@ -10,8 +10,16 @@ export class AppLogger {
     this.pinoLogger.info({ location, ...context }, `[${location}] ${message}`);
   }
 
-  logError(location: string, message: string, context?: any, error?: any): void {
-    this.pinoLogger.error({ location, error, ...context }, `[${location}] ${message}`);
+  logError(
+    location: string,
+    message: string,
+    context?: any,
+    error?: any,
+  ): void {
+    this.pinoLogger.error(
+      { location, error, ...context },
+      `[${location}] ${message}`,
+    );
   }
 
   logWarn(location: string, message: string, context?: any): void {
