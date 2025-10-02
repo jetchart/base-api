@@ -1,5 +1,3 @@
-import { DEFAULT_DATA_SOURCE_OPTIONS } from './config.common';
-
 export const configuration = () => ({
   database: {
     type: 'sqlite',
