@@ -16,18 +16,7 @@ import { ErrorMiddleware } from 'src/middlewares/error.middleware';
 
 @Module({
   imports: [
-    LoggerModule.forRoot({
-      pinoHttp: {
-        level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-        transport:
-          process.env.NODE_ENV !== 'production'
-            ? {
-                target: 'pino-pretty',
-                options: { colorize: true },
-              }
-            : undefined,
-      },
-    }),
+    LoggerModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: (() => {
