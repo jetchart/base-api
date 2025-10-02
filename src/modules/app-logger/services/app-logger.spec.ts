@@ -1,15 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { AppLoggerService } from './app-logger';
+import type { TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+import { AppLogger } from './app-logger';
 
 describe('AppLoggerService', () => {
-  let service: AppLoggerService;
+  let service: AppLogger;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AppLoggerService],
+      providers: [AppLogger],
     }).compile();
 
-    service = module.get<AppLoggerService>(AppLoggerService);
+    service = module.get<AppLogger>(AppLogger);
   });
 
   it('should be defined', () => {

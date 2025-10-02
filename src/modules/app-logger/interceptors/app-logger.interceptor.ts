@@ -13,7 +13,10 @@ import { Logger } from 'nestjs-pino';
 export class AppLoggingInterceptor implements NestInterceptor {
   constructor(private readonly logger: Logger) {}
 
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler,
+  ): Observable<Record<string, unknown>> {
     const now = Date.now();
 
     const httpCtx = context.switchToHttp();

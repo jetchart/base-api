@@ -11,7 +11,7 @@ import { Logger } from 'nestjs-pino';
 export class HttpErrorFilter implements ExceptionFilter {
   constructor(private readonly logger: Logger) {}
 
-  catch(exception: any, host: ArgumentsHost) {
+  catch(exception: Record<string, unknown>, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();

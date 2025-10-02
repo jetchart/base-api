@@ -16,7 +16,6 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpErrorFilter(logger));
 
   const configService = app.get<ConfigService>(ConfigService);
-  const webHost = configService.get('web.host');
   const port = configService.get('nestport') || 3000;
 
   app.enableCors({
@@ -27,4 +26,4 @@ async function bootstrap() {
   logger.log(`Application running on port ${port}`);
   await app.listen(port);
 }
-bootstrap();
+void bootstrap();

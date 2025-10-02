@@ -1,4 +1,4 @@
-import { DataSourceOptions } from 'typeorm';
+import type { DataSourceOptions } from 'typeorm';
 
 export const DEFAULT_DATA_SOURCE_OPTIONS: Partial<DataSourceOptions> = {
   type: 'postgres',
