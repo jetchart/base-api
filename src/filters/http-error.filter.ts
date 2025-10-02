@@ -5,11 +5,11 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { AppLogger } from 'src/modules/app-logger/app-logger';
+import { Logger } from 'nestjs-pino';
 
 @Catch()
 export class HttpErrorFilter implements ExceptionFilter {
-  constructor(private readonly logger: AppLogger) {}
+  constructor(private readonly logger: Logger) {}
 
   catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -25,8 +25,6 @@ export class HttpErrorFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getResponse()
         : 'Unexpected error occurred';
-
-    this.logger.error('Unexpected error occurred', message);
 
     response.status(status).json({
       statusCode: status,

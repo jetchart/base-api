@@ -7,11 +7,11 @@ import {
 import { Observable, tap, catchError } from 'rxjs';
 import { Request } from 'express';
 import { throwError } from 'rxjs';
-import { AppLogger } from './app-logger';
+import { Logger } from 'nestjs-pino';
 
 @Injectable()
 export class AppLoggingInterceptor implements NestInterceptor {
-  constructor(private readonly logger: AppLogger) {}
+  constructor(private readonly logger: Logger) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const now = Date.now();
@@ -19,15 +19,16 @@ export class AppLoggingInterceptor implements NestInterceptor {
     const httpCtx = context.switchToHttp();
     const request = httpCtx.getRequest<Request>();
     const { method, url } = request;
+    
 
-    this.logger.info(`➡️  ${method} ${url} - Incoming request`);
+    this.logger.log(`➡️  ${method} ${url} - Incoming request`);
 
     return next.handle().pipe(
       tap(() => {
         const response = httpCtx.getResponse();
         const statusCode = response.statusCode;
         const ms = Date.now() - now;
-        this.logger.info(`⬅️  ${method} ${url} - ${statusCode} [${ms}ms]`);
+        this.logger.log(`⬅️  ${method} ${url} - ${statusCode} [${ms}ms]`);
       }),
       catchError((err) => {
         const ms = Date.now() - now;

@@ -1,36 +1,20 @@
-import { Injectable, LoggerService } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { Request } from 'express';
 import { PinoLogger } from 'nestjs-pino';
 
 @Injectable()
-export class AppLogger extends PinoLogger implements LoggerService {
-  private format(context: string, message: any) {
-    const prefix = context ? `[${context}] ` : '';
-    if (typeof message === 'string') return `${prefix}${message}`;
-    if (message instanceof Error) return `${prefix}${message.message}`;
-    return `${prefix}${JSON.stringify(message)}`;
+export class AppLogger {
+  constructor(private readonly pinoLogger: PinoLogger) {}
+
+  logInfo(location: string, message: string, context?: any): void {
+    this.pinoLogger.info({ location, ...context }, message);
   }
 
-  log(context: string, message: any, ...optionalParams: any[]) {
-    super.info(this.format(context, message), ...optionalParams);
+  logError(location: string, message: string, context?: any, error?: any): void {
+    this.pinoLogger.error({ location, error, ...context }, message);
   }
 
-  error(context: string, message: any, ...optionalParams: any[]) {
-    super.error(this.format(context, message), ...optionalParams);
-  }
-
-  warn(context: string, message: any, ...optionalParams: any[]) {
-    super.warn(this.format(context, message), ...optionalParams);
-  }
-
-  debug(context: string, message: any, ...optionalParams: any[]) {
-    super.debug(this.format(context, message), ...optionalParams);
-  }
-
-  verbose(context: string, message: any, ...optionalParams: any[]) {
-    super.info(this.format(context, message), ...optionalParams);
-  }
-
-  success(context: string, message: any, ...optionalParams: any[]) {
-    super.info(this.format(context, `✅ ${message}`), ...optionalParams);
+  logWarn(location: string, message: string, context?: any): void {
+    this.pinoLogger.warn({ location, ...context }, message);
   }
 }

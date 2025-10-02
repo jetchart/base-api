@@ -1,16 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
 import { ConfigService } from '@nestjs/config';
-import { AppLogger } from './modules/app-logger/app-logger';
 import { AppLoggingInterceptor } from './modules/app-logger/app-logger.interceptor';
 import { HttpErrorFilter } from './filters/http-error.filter';
+import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
   });
 
-  const logger = app.get(AppLogger);
+  const logger = app.get(Logger);
   app.useLogger(logger);
   app.useGlobalInterceptors(new AppLoggingInterceptor(logger));
   app.useGlobalFilters(new HttpErrorFilter(logger));
@@ -24,7 +24,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  logger.log('bootstrap', `Application running on port ${port}`);
+  logger.log(`Application running on port ${port}`);
   await app.listen(port);
 }
 bootstrap();
