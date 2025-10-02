@@ -34,7 +34,7 @@ export class AppLoggingInterceptor implements NestInterceptor {
         const ms = Date.now() - now;
         this.logger.error(`❌ ${method} ${url} - Error after ${ms}ms`, err);
         return throwError(() => err);
-      }),
+      })
     );
   }
 }

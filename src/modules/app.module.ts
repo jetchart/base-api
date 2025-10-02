@@ -5,7 +5,7 @@ import { configuration as productionConfiguration } from '../config/config.produ
 import { configuration as stagingConfiguration } from '../config/config.staging';
 import { configuration as testingConfiguration } from '../config/config.testing';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { UserEntity } from './auth/user.entity';
+import { UserEntity } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';

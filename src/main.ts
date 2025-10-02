@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
 import { ConfigService } from '@nestjs/config';
-import { AppLoggingInterceptor } from './modules/app-logger/app-logger.interceptor';
+import { AppLoggingInterceptor } from './modules/app-logger/interceptors/app-logger.interceptor';
 import { HttpErrorFilter } from './filters/http-error.filter';
 import { Logger } from 'nestjs-pino';
 
