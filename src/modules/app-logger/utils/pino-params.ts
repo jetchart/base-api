@@ -5,7 +5,7 @@ const DEVELOPMENT_ENV_TRANSPORT = {
     target: 'pino-pretty',
     options: {
       colorize: true,
-      ignore: 'pid,hostname,context,req',
+      ignore: 'pid,hostname,context,req,location',
       levelFirst: true,
       translateTime: true
     }

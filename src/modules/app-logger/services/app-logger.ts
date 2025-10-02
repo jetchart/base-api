@@ -7,14 +7,14 @@ export class AppLogger {
   constructor(private readonly pinoLogger: PinoLogger) {}
 
   logInfo(location: string, message: string, context?: any): void {
-    this.pinoLogger.info({ location, ...context }, message);
+    this.pinoLogger.info({ location, ...context }, `[${location}] ${message}`);
   }
 
   logError(location: string, message: string, context?: any, error?: any): void {
-    this.pinoLogger.error({ location, error, ...context }, message);
+    this.pinoLogger.error({ location, error, ...context }, `[${location}] ${message}`);
   }
 
   logWarn(location: string, message: string, context?: any): void {
-    this.pinoLogger.warn({ location, ...context }, message);
+    this.pinoLogger.warn({ location, ...context }, `[${location}] ${message}`);
   }
 }
