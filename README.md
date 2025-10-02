@@ -1,9 +1,19 @@
 
-
-
 # Base API
 
-A base API built with NestJS, TypeORM, PostgreSQL, and Google authentication. Includes structured logging with [nestjs-pino](https://github.com/iamolegga/nestjs-pino).
+A modern, minimal, and scalable NestJS + TypeScript starter project with JWT authentication, Google OAuth integration, TypeORM, and structured logging using Pino.
+
+## Features
+
+- ⚡️ Fast development with NestJS
+- 🛡️ Strict TypeScript type safety
+- 🔐 JWT authentication & Google OAuth login
+- 🗄️ TypeORM for database access
+- 📊 Structured logging with nestjs-pino
+- 🧩 Modular, clean, and scalable architecture
+- 🧪 Ready for unit and e2e testing
+- 📝 Modern ESLint and Prettier setup
+
 
 ---
 
