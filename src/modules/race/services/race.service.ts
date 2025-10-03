@@ -19,7 +19,7 @@ export class RaceService {
   async findAll(): Promise<RaceEntity[]> {
     return this.raceRepository.find({
       relations: ['distances', 'distances.distance'],
-      order: { startDate: 'DESC' },
+      order: { startDate: 'ASC' },
     });
   }
 
