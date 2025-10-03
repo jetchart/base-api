@@ -12,6 +12,9 @@ import { CreateRaceDistanceDto } from './create-race-distance.dto';
 
 export class CreateRaceDto {
   @IsString()
+  @IsOptional()
+  imageUrl?: string;
+  @IsString()
   @IsNotEmpty()
   name: string;
 
