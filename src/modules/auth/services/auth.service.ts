@@ -41,7 +41,7 @@ export class AuthService {
       ? existingUser
       : await this.userService.create(userDto);
 
-    const access_token = this.jwtService.sign({ sub: persistedUser.email });
-    return new UserCredentialDto(userDto, access_token);
+    const jwt = this.jwtService.sign({ sub: persistedUser.email });
+    return new UserCredentialDto(userDto, jwt);
   }
 }

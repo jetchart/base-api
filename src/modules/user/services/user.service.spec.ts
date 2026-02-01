@@ -12,6 +12,7 @@ const mockUser = {
   familyName: 'Doe',
   pictureUrl: 'http://example.com/pic.jpg',
   email: 'john@example.com',
+  isAdmin: false,
   createdAt: new Date(),
   updatedAt: new Date(),
   deletedAt: undefined,

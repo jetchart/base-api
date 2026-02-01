@@ -58,6 +58,6 @@ describe('AuthController', () => {
     expect(result).toBe(mockUserCredential);
     expect(result).toBeInstanceOf(UserCredentialDto);
     expect(result.email).toBe('john@example.com');
-    expect(result.accessToken).toBe('jwt-token');
+    expect(result.jwt).toBe('jwt-token');
   });
 });
