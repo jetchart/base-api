@@ -35,6 +35,7 @@ export class AuthService {
       payload.given_name!,
       payload.family_name!,
       payload.picture!,
+      existingUser?.isAdmin || false,
     );
 
     const persistedUser = existingUser

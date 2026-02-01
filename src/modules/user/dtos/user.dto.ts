@@ -28,7 +28,7 @@ export class UserDto {
     givenName: string,
     familyName: string,
     pictureUrl: string,
-    isAdmin: boolean = false,
+    isAdmin: boolean,
   ) {
     this.email = email;
     this.name = name;
