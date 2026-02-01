@@ -13,7 +13,6 @@ import { UserModule } from './user/user.module';
 import { LoggerModule } from 'nestjs-pino';
 import { AppLoggerModule } from './app-logger/app-logger.module';
 import { ErrorMiddleware } from 'src/middlewares/error.middleware';
-import { RaceModule } from './race/race.module';
 
 @Module({
   imports: [
@@ -38,7 +37,6 @@ import { RaceModule } from './race/race.module';
     AuthModule,
     UserModule,
     AppLoggerModule,
-    RaceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
