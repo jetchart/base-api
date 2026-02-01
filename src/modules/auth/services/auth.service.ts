@@ -41,7 +41,10 @@ export class AuthService {
       ? existingUser
       : await this.userService.create(userDto);
 
-    const jwt = this.jwtService.sign({ sub: persistedUser.email });
+    const jwt = this.jwtService.sign({
+      sub: persistedUser.email,
+      isAdmin: persistedUser.isAdmin,
+    });
     return new UserCredentialDto(userDto, jwt);
   }
 }
